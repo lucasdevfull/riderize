@@ -1,0 +1,21 @@
+model Pedal {
+  pedalId               String      @id @default(uuid()) @map("pedal_id") @db.Uuid
+  name                  String      @db.VarChar(50)
+  startDateRegistration DateTime    @db.Date
+  endDateRegistration   DateTime    @map("end_date_registration") @db.Date
+  additionalInfomation  String?     @map("additional_infomation") @db.VarChar(100)
+  startPlace            String      @map("start_place") @db.VarChar(100)
+  participantsLimit     Int?        @map("participants_limit")
+  user                  User        @relation(fields: [userId], references: [userId])
+  userId                String      @map("user_id") @db.Uuid
+  inscricao             Inscricao[]
+}
+
+model Inscricao {
+  rideId           String   @id @default(uuid())
+  pedal            Pedal    @relation(fields: [pedalId], references: [pedalId])
+  pedalId          String   @map("pedal_id") @db.Uuid
+  user             User     @relation(fields: [userId], references: [userId])
+  userId           String   @map("user_id") @db.Uuid
+  subscriptionDate DateTime @map("subscription_date") @db.Date
+}
