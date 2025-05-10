@@ -21,7 +21,10 @@ export class UsersService {
 
     if (userExists) throw new UserAlreadyExistsException()
 
-    password = await this.passwordService.passwordHash(password, randomInt(10,14))
+    password = await this.passwordService.passwordHash(
+      password,
+      randomInt(10, 14)
+    )
     return await this.userRepository.create({ email, password })
   }
 }

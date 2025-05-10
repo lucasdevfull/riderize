@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { User } from '@prisma/client'
-import { compare, compareSync } from 'bcrypt'
+import { compareSync } from '@node-rs/bcrypt'
 import { GraphQLError } from 'graphql'
 import { LoginDto } from 'src/dto/user.dto'
 import { UserNotFoundException } from 'src/modules/users/exception/user.exception'
