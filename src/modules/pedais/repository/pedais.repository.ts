@@ -9,6 +9,16 @@ export class PedaisRepository {
     return await this.prisma.pedal.findMany()
   }
 
+  async findById(pedalId: string) {
+    return await this.prisma.pedal.findUnique({ where: { pedalId } })
+  }
+
+  async findByUserId(userId: string) {
+    return await this.prisma.pedal.findMany({
+      where: { userId },
+    })
+  }
+
   async create(data: CreatePedalDto, userId: string) {
     return await this.prisma.pedal.create({
       data: {

@@ -2,7 +2,7 @@ model User {
   userId    String      @id @default(uuid()) @map("user_id") @db.Uuid
   email     String      @unique @db.VarChar(255)
   password  String      @db.VarChar(255)
-  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamp()
-  pedal     Pedal[]
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamp(6)
   inscricao Inscricao[]
+  pedal     Pedal[]
 }

@@ -6,16 +6,16 @@ model Pedal {
   additionalInfomation  String?     @map("additional_infomation") @db.VarChar(100)
   startPlace            String      @map("start_place") @db.VarChar(100)
   participantsLimit     Int?        @map("participants_limit")
-  user                  User        @relation(fields: [userId], references: [userId])
   userId                String      @map("user_id") @db.Uuid
   inscricao             Inscricao[]
+  user                  User        @relation(fields: [userId], references: [userId])
 }
 
 model Inscricao {
   rideId           String   @id @default(uuid())
-  pedal            Pedal    @relation(fields: [pedalId], references: [pedalId])
   pedalId          String   @map("pedal_id") @db.Uuid
-  user             User     @relation(fields: [userId], references: [userId])
   userId           String   @map("user_id") @db.Uuid
-  subscriptionDate DateTime @map("subscription_date") @db.Date
+  subscriptionDate DateTime @default(dbgenerated("CURRENT_DATE")) @map("subscription_date") @db.Date
+  pedal            Pedal    @relation(fields: [pedalId], references: [pedalId])
+  user             User     @relation(fields: [userId], references: [userId])
 }

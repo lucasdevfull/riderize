@@ -13,8 +13,7 @@ export class AuthGuard implements CanActivate {
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const ctx = GqlExecutionContext.create(context)
-    const request: Request = ctx.getContext().req
-    console.log(request.headers.authorization)
+    const request = ctx.getContext<{ req: Request }>().req
     const token = request.headers.authorization?.split(' ')[1]
     if (!token)
       throw new GraphQLError('Unauthorized', {
@@ -35,11 +34,7 @@ export class AuthGuard implements CanActivate {
       })
     }
 
-    // ctx.getContext().req.context = {
-    //   ...ctx.getContext().req.context,
-    //   user:user.userId
-    // }
-
+    request.user = user.userId
     return true
   }
 }
