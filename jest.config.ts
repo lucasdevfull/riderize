@@ -1,9 +1,10 @@
-import type { JestConfigWithTsJest } from 'ts-jest'
+import { type JestConfigWithTsJest, pathsToModuleNameMapper } from 'ts-jest'
+import { compilerOptions } from './tsconfig.json'
 
-const config: JestConfigWithTsJest = {
+const config = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  rootDir: 'src',
+  rootDir: './',
   testRegex: '.*\\.spec\\.ts$',
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
@@ -11,6 +12,7 @@ const config: JestConfigWithTsJest = {
   collectCoverageFrom: ['**/*.(t|j)s'],
   coverageDirectory: '../coverage',
   moduleFileExtensions: ['js', 'json', 'ts'],
-}
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
+} satisfies JestConfigWithTsJest
 
 export default config
