@@ -6,6 +6,7 @@ import { GraphQLModule } from '@nestjs/graphql'
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      graphiql: true,
       autoSchemaFile: 'schema.gql',
       context: ({ req, res }) => ({ req, res }),
       formatError: ({ message, extensions }) => {
