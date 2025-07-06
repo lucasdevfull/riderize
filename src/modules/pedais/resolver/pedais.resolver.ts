@@ -1,14 +1,14 @@
-import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql'
-import { Pedais } from 'src/models/pedais.models'
-import { PedaisService } from '../service/pedais.service'
-import { CreatePedalDto } from 'src/dto/pedal.dto'
 import { HttpException, HttpStatus, UseGuards } from '@nestjs/common'
-import { AuthGuard } from 'src/modules/auth/guard/auth.guard'
-import type { Request } from 'express'
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { plainToInstance } from 'class-transformer'
-import { CreateEnrollmentDto } from 'src/dto/enrollment.dto'
-import dayjs from 'dayjs'
 import { validate } from 'class-validator'
+import dayjs from 'dayjs'
+import type { Request } from 'express'
+import { CreateEnrollmentDto } from 'src/dto/enrollment.dto'
+import { CreatePedalDto } from 'src/dto/pedal.dto'
+import { Pedais } from 'src/models/pedais.models'
+import { AuthGuard } from 'src/modules/auth/guard/auth.guard'
+import { PedaisService } from '../service/pedais.service'
 @Resolver()
 export class PedaisResolver {
   constructor(private pedaisService: PedaisService) {}
@@ -22,21 +22,21 @@ export class PedaisResolver {
   @UseGuards(AuthGuard)
   @Mutation(() => Pedais, { name: 'createPedais' })
   async createPedais(
-    @Context('req') req: Request,
+    @Context('req') { user }: Request,
     @Args('data') data: CreatePedalDto
   ) {
-    const result = await this.pedaisService.createPedal(data, req.user!)
+    const result = await this.pedaisService.createPedal(data, user)
     return result
   }
 
   @UseGuards(AuthGuard)
-  @Mutation(() => 'String', { name: 'inscribePedal' })
+  @Mutation(() => null, { name: 'inscribePedal' })
   async enrollment(
-    @Context('req') req: Request,
+    @Context('req') { user }: Request,
     @Args('pedalId') pedalId: string
   ) {
     const enrollmentDto = plainToInstance(CreateEnrollmentDto, {
-      userId: req.user!,
+      userId: user,
       pedalId,
       subscriptionDate: dayjs().toDate(),
     })

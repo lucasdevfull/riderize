@@ -1,10 +1,10 @@
 import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common'
-import { PrismaClient, Prisma } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
 
 const extentions = Prisma.defineExtension({
   query: {
     // Aplica-se a todas as operações e modelos
-    async $allOperations({ model, operation, args, query }) {
+    async $allOperations({ args, query }) {
       return query(args) // executa a operação original
     },
   },

@@ -7,11 +7,11 @@ model Pedal {
   startPlace            String      @map("start_place") @db.VarChar(100)
   participantsLimit     Int?        @map("participants_limit")
   userId                String      @map("user_id") @db.Uuid
-  inscricao             Inscricao[]
+  enrollment             Enrollment[]
   user                  User        @relation(fields: [userId], references: [userId])
 }
 
-model Inscricao {
+model Enrollment {
   rideId           String   @id @default(uuid())
   pedalId          String   @map("pedal_id") @db.Uuid
   userId           String   @map("user_id") @db.Uuid

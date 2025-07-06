@@ -3,32 +3,32 @@ import { IsDate, IsNotEmpty, IsOptional, IsString } from 'class-validator'
 
 @InputType()
 export class CreatePedalDto {
-  @Field(type => String)
+  @Field(() => String)
   @IsString()
   @IsNotEmpty()
   name: string
 
   @IsDate()
   @IsNotEmpty()
-  @Field(type => Date)
+  @Field(() => Date)
   startDateRegistration: Date
 
   @IsDate()
   @IsNotEmpty()
-  @Field(type => Date)
+  @Field(() => Date)
   endDateRegistration: Date
 
   @IsString()
   @IsOptional()
-  @Field(type => String, { nullable: true })
+  @Field(() => String, { nullable: true })
   additionalInfomation?: string
 
   @IsString()
   @IsNotEmpty()
-  @Field(type => String)
+  @Field(() => String)
   startPlace: string
 
   @IsOptional()
-  @Field(type => Int, { nullable: true })
+  @Field(() => Int, { nullable: true })
   participantsLimit?: number
 }

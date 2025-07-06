@@ -1,13 +1,13 @@
+import { ApolloDriver, type ApolloDriverConfig } from '@nestjs/apollo'
 import { Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { GraphQLModule } from '@nestjs/graphql'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'
-import { GraphQLModule } from '@nestjs/graphql'
-import { ApolloDriver, type ApolloDriverConfig } from '@nestjs/apollo'
-import { UsersModule } from './modules/users/users.module'
 import { PrismaModule } from './infra/prisma/prisma.module'
 import { AuthModule } from './modules/auth/modules/auth.module'
-import { ConfigModule } from '@nestjs/config'
 import { PedaisModule } from './modules/pedais/pedais.module'
+import { UsersModule } from './modules/users/users.module'
 
 @Module({
   imports: [

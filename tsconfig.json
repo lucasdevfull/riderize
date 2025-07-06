@@ -17,11 +17,9 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    
+
     "paths": {
-      "@prisma/*": [
-        ".prisma/*"
-      ]
+      "@prisma/*": [".prisma/*"]
     }
   }
 }

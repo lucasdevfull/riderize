@@ -1,25 +1,28 @@
 import { Injectable } from '@nestjs/common'
-import { PrismaService } from 'src/infra/prisma/prisma.service'
+import type { Pedal } from '@prisma/client'
 import { CreatePedalDto } from 'src/dto/pedal.dto'
+import { PrismaService } from 'src/infra/prisma/prisma.service'
+import type { IPedalRepository } from 'src/types/interfaces/pedal.types'
+
 @Injectable()
-export class PedaisRepository {
+export class PedaisRepository implements IPedalRepository {
   constructor(private prisma: PrismaService) {}
 
-  async findAll() {
+  async findAll(): Promise<Pedal[]> {
     return await this.prisma.pedal.findMany()
   }
 
-  async findById(pedalId: string) {
-    return await this.prisma.pedal.findUnique({ where: { pedalId } })
+  async findById(id: string): Promise<Pedal | null> {
+    return await this.prisma.pedal.findUnique({ where: { pedalId: id } })
   }
 
-  async findByUserId(userId: string) {
+  async findByUserId(userId: string): Promise<Pedal[]> {
     return await this.prisma.pedal.findMany({
       where: { userId },
     })
   }
 
-  async create(data: CreatePedalDto, userId: string) {
+  async create(data: CreatePedalDto, userId: string): Promise<Pedal> {
     return await this.prisma.pedal.create({
       data: {
         ...data,
