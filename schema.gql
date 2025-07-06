@@ -18,7 +18,9 @@ type Token {
   accessToken: String!
 }
 
-"""Pedais"""
+"""
+Pedais
+"""
 type Pedais {
   pedalId: ID
   name: String
@@ -30,7 +32,9 @@ type Pedais {
   userId: String
 }
 
-"""Enrollment"""
+"""
+Enrollment
+"""
 type Enrollment {
   rideId: ID
   pedalId: String

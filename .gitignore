@@ -4,3 +4,4 @@ node_modules
 .prisma
 dist
 index.ts
+schema.gql

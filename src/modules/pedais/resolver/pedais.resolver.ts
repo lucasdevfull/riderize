@@ -6,10 +6,12 @@ import dayjs from 'dayjs'
 import type { Request } from 'express'
 import { CreateEnrollmentDto } from 'src/dto/enrollment.dto'
 import { CreatePedalDto } from 'src/dto/pedal.dto'
+import { Enrollment } from 'src/models/enrollment.model'
 import { Pedais } from 'src/models/pedais.model'
 import { AuthGuard } from 'src/modules/auth/guard/auth.guard'
+import { CreateEnrollment } from 'src/types/enrollment.types'
 import { PedaisService } from '../service/pedais.service'
-import { Enrollment } from 'src/models/enrollment.model'
+
 @Resolver()
 export class PedaisResolver {
   constructor(private pedaisService: PedaisService) {}
@@ -36,7 +38,10 @@ export class PedaisResolver {
     @Context('req') { user }: Request,
     @Args('pedalId') pedalId: string
   ) {
-    const enrollmentDto = plainToInstance(CreateEnrollmentDto, {
+    const enrollmentDto = plainToInstance<
+      CreateEnrollmentDto,
+      CreateEnrollment
+    >(CreateEnrollmentDto, {
       userId: user,
       pedalId,
       subscriptionDate: dayjs().toDate(),
