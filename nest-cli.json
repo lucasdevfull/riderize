@@ -7,7 +7,8 @@
       "type": "swc",
       "options": {
         "swcrcPath": "./infra/swc/.swcrc",
-        "typeCheck": true
+        "typeCheck": true,
+        "outDir": "./dist"
       }
     },
     "deleteOutDir": true
