@@ -1,7 +1,7 @@
 import { type JestConfigWithTsJest, pathsToModuleNameMapper } from 'ts-jest'
 import { compilerOptions } from './tsconfig.json'
 
-const config = {
+export default {
   preset: 'ts-jest',
   testEnvironment: 'node',
   rootDir: './',
@@ -14,5 +14,3 @@ const config = {
   moduleFileExtensions: ['js', 'json', 'ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths),
 } satisfies JestConfigWithTsJest
-
-export default config
