@@ -3,20 +3,20 @@ import { JwtService } from '@nestjs/jwt'
 import { compareSync } from '@node-rs/bcrypt'
 import { User } from '@prisma/client'
 import { GraphQLError } from 'graphql'
-import { LoginDto } from 'src/dto/user.dto'
-import { UserNotFoundException } from 'src/modules/users/exception/user.exception'
-import { UserRepository } from 'src/modules/users/repository/user.repository'
+import { LoginDto } from '@dtos/user.dto'
+import { UserNotFoundException } from '@exception/user.exception'
+import { UserRepository } from '@repositories/user.repository'
 
 @Injectable()
 export class AuthService {
   constructor(
-    private jswtService: JwtService,
+    private jwtService: JwtService,
     private usersRepository: UserRepository
   ) {}
 
   async generateToken({ userId }: User): Promise<{ accessToken: string }> {
     return {
-      accessToken: await this.jswtService.signAsync({ sub: userId }),
+      accessToken: await this.jwtService.signAsync({ sub: userId }),
     }
   }
 

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common'
 import type { Pedal } from '@prisma/client'
-import { CreatePedalDto } from 'src/dto/pedal.dto'
-import { PrismaService } from 'src/infra/prisma/prisma.service'
-import type { IPedalRepository } from 'src/types/interfaces/pedal.types'
+import { CreatePedalDto } from '@dtos/pedal.dto'
+import { PrismaService } from '@/infra/prisma/prisma.service'
+import type { IPedalRepository } from '@/types/interfaces/pedal.types'
 
 @Injectable()
 export class PedaisRepository implements IPedalRepository {

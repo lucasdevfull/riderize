@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import dayjs from 'dayjs'
-import { CreateEnrollmentDto } from 'src/dto/enrollment.dto'
-import { CreatePedalDto } from 'src/dto/pedal.dto'
-import { EnrollmentRepository } from '../repository/enrollment.repository'
-import { PedaisRepository } from '../repository/pedais.repository'
+import { CreateEnrollmentDto } from '@dtos/enrollment.dto'
+import { CreatePedalDto } from '@dtos/pedal.dto'
+import { EnrollmentRepository } from '@repositories/enrollment.repository'
+import { PedaisRepository } from '@repositories/pedais.repository'
 
 @Injectable()
 export class PedaisService {

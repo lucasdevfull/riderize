@@ -3,7 +3,7 @@ import { GqlExecutionContext } from '@nestjs/graphql'
 import { JwtService } from '@nestjs/jwt'
 import { Request } from 'express'
 import { GraphQLError } from 'graphql'
-import { UserRepository } from 'src/modules/users/repository/user.repository'
+import { UserRepository } from '@repositories/user.repository'
 
 @Injectable()
 export class AuthGuard implements CanActivate {

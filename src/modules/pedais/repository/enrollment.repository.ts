@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 import type { Enrollment } from '@prisma/client'
-import type { CreateEnrollmentDto } from 'src/dto/enrollment.dto'
-import { PrismaService } from 'src/infra/prisma/prisma.service'
-import { EnrollmentPedal } from 'src/types/enrollment.types'
-import type { IEnrollmentRepository } from 'src/types/interfaces/enrollment.types'
+import type { CreateEnrollmentDto } from '@dtos/enrollment.dto'
+import { PrismaService } from '@/infra/prisma/prisma.service'
+import { EnrollmentPedal } from '@/types/enrollment.types'
+import type { IEnrollmentRepository } from '@/types/interfaces/enrollment.types'
 
 @Injectable()
 export class EnrollmentRepository implements IEnrollmentRepository {

@@ -18,8 +18,37 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "resolveJsonModule": true,
+    "allowJs": true,
     "paths": {
-      "@prisma/*": [".prisma/*"]
+      "@/*": ["src/*"],
+      "@modules/*": ["src/modules/*"],
+      "@services/*": [
+        "src/modules/auth/service/*",
+        "src/modules/users/service/*",
+        "src/modules/pedais/service/*"
+      ],
+      "@repositories/*": [
+        "src/modules/auth/repository/*",
+        "src/modules/users/repository/*",
+        "src/modules/pedais/repository/*"
+      ],
+      "@dtos/*": [
+        "src/dto/*"
+      ],
+      "@models/*": [
+        "src/models/*"
+      ],
+      "@guards/*": [
+        "src/modules/auth/guard/*"
+      ],
+      "@resolvers/*": [
+        "src/modules/auth/resolver/*",
+        "src/modules/users/resolver/*",
+        "src/modules/pedais/resolver/*"
+      ],
+      "@exception/*": [
+        "src/modules/users/exception/*"
+      ]
     }
   }
 }
