@@ -3,3 +3,12 @@ declare namespace Express {
     user: string
   }
 }
+
+declare namespace NodeJS {
+  interface ProcessEnv {
+    SECRET_KEY: string
+    JWT: string
+    ALGORITHM: string
+    PORT: string | number
+  }
+}
