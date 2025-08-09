@@ -1,10 +1,9 @@
-import { ValidationException } from '@common/exception'
 import { CreateEnrollmentDto } from '@dtos/enrollment.dto'
 import { CreatePedalDto } from '@dtos/pedal.dto'
 import { AuthGuard } from '@guards/auth.guard'
 import { Enrollment } from '@models/enrollment.model'
 import { Pedais } from '@models/pedais.model'
-import { UseGuards } from '@nestjs/common'
+import { BadRequestException, UseGuards } from '@nestjs/common'
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql'
 import { PedaisService } from '@services/pedais.service'
 import { plainToInstance } from 'class-transformer'
@@ -13,19 +12,16 @@ import dayjs from 'dayjs'
 import type { Request } from 'express'
 import { CreateEnrollment } from '@/types/enrollment.types'
 
-
 @Resolver()
 @UseGuards(AuthGuard)
 export class PedaisResolver {
   constructor(private pedaisService: PedaisService) {}
 
-  //@UseGuards(AuthGuard)
   @Query(() => [Pedais], { name: 'getAllPedais' })
   async getAllPedais() {
     return this.pedaisService.getAllPedais()
   }
 
-  //@UseGuards(AuthGuard)
   @Mutation(() => Pedais, { name: 'createPedais' })
   async createPedais(
     @Context('req') { user }: Request,
@@ -35,7 +31,6 @@ export class PedaisResolver {
     return result
   }
 
-  //@UseGuards(AuthGuard)
   @Mutation(() => Enrollment, { name: 'inscribePedal' })
   async enrollment(
     @Context('req') { user }: Request,
@@ -51,7 +46,12 @@ export class PedaisResolver {
     })
     const error = await validate(enrollmentDto)
     if (error.length > 0) {
-      throw new ValidationException(error)
+      throw new BadRequestException({
+        statusCode: 400,
+        message: error,
+        error: 'Bad Request',
+      })
+      //throw new ValidationException(error)
     }
     return this.pedaisService.createEnrollment(enrollmentDto)
   }

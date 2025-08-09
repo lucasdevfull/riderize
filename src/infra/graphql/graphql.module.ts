@@ -14,8 +14,7 @@ import { GraphQLModule } from '@nestjs/graphql'
           message,
           extensions: {
             code: extensions?.code,
-            http: extensions?.http,
-            validation: extensions?.validation || null,
+            originalError: extensions?.originalError || null,
           },
         }
       },

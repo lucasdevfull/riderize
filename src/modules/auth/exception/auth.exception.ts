@@ -2,10 +2,14 @@ import { GraphQLError } from 'graphql'
 
 export class InvalidPasswordException extends GraphQLError {
   constructor() {
-    super('Invalid password', {
+    super('Invalid password Exception', {
       extensions: {
         code: 'INVALID_PASSWORD',
-        http: { status: 409 },
+        originalError: {
+          message: 'Invalid password',
+          error: 'CONFLIT',
+          statusCode: 409,
+        },
       },
     })
   }

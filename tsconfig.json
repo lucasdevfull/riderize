@@ -18,7 +18,7 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "resolveJsonModule": true,
-    "allowJs": true,
+    
     "paths": {
       "@/*": ["src/*"],
       "@modules/*": ["src/modules/*"],
@@ -46,6 +46,7 @@
         "src/modules/pedais/exception/*"
       ],
       "@common/*": ["src/common/*"]
-    }
+    },
+    "allowJs": true
   }
 }

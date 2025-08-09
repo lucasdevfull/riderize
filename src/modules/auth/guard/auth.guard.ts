@@ -1,5 +1,9 @@
-import { UnauthorizedException } from '@common/exception'
-import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common'
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common'
 import { GqlExecutionContext } from '@nestjs/graphql'
 import { JwtService } from '@nestjs/jwt'
 import { UserRepository } from '@repositories/user.repository'
@@ -15,7 +19,12 @@ export class AuthGuard implements CanActivate {
     const ctx = GqlExecutionContext.create(context)
     const { req } = ctx.getContext<{ req: Request }>()
     const token = this.getToken(req)
-    if (!token) throw new UnauthorizedException()
+    if (!token)
+      throw new UnauthorizedException({
+        statusCode: 401,
+        message: 'Token is not exists',
+        error: 'UNAUTHORIZED',
+      })
 
     const { sub } = this.jwtService.verify<{
       sub: string
@@ -26,7 +35,11 @@ export class AuthGuard implements CanActivate {
     const user = await this.usersRepository.findById(sub)
 
     if (!user) {
-      throw new UnauthorizedException()
+      throw new UnauthorizedException({
+        statusCode: 401,
+        message: 'User is not authorized',
+        error: 'UNAUTHORIZED',
+      })
     }
 
     req.user = user.userId
