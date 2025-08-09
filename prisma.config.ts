@@ -3,8 +3,8 @@ import path from 'node:path'
 import type { PrismaConfig } from 'prisma/config'
 
 export default {
-    schema: path.join(__dirname, 'infra', 'prisma', 'schema'),
-    migrations: {
-        path: path.join(__dirname, 'infra', 'prisma', 'migrations'),
-    }
+  schema: path.join(__dirname, 'infra', 'prisma', 'schema'),
+  migrations: {
+    path: path.join(__dirname, 'infra', 'prisma', 'migrations'),
+  },
 } satisfies PrismaConfig

@@ -1,6 +1,6 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { LoginDto } from '@dtos/user.dto'
 import { Token } from '@models/auth.model'
+import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { AuthService } from '@services/auth/auth.service'
 
 @Resolver()

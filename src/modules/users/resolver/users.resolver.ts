@@ -1,6 +1,6 @@
-import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { CreateUserDto } from '@dtos/user.dto'
 import { User } from '@models/users.model'
+import { Args, Mutation, Resolver } from '@nestjs/graphql'
 import { UsersService } from '@services/users.service'
 
 @Resolver('')

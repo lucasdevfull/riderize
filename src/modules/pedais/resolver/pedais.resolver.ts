@@ -1,16 +1,17 @@
-import { HttpException, HttpStatus, UseGuards } from '@nestjs/common'
+import { CreateEnrollmentDto } from '@dtos/enrollment.dto'
+import { CreatePedalDto } from '@dtos/pedal.dto'
+import { AuthGuard } from '@guards/auth.guard'
+import { Enrollment } from '@models/enrollment.model'
+import { Pedais } from '@models/pedais.model'
+import { UseGuards } from '@nestjs/common'
 import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql'
+import { PedaisService } from '@services/pedais.service'
 import { plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
 import dayjs from 'dayjs'
 import type { Request } from 'express'
-import { CreateEnrollmentDto } from '@dtos/enrollment.dto'
-import { CreatePedalDto } from '@dtos/pedal.dto'
-import { Enrollment } from '@models/enrollment.model'
-import { Pedais } from '@models/pedais.model'
-import { AuthGuard } from '@guards/auth.guard'
+import { ValidationException } from '@common/exception'
 import { CreateEnrollment } from '@/types/enrollment.types'
-import { PedaisService } from '@services/pedais.service'
 
 @Resolver()
 export class PedaisResolver {
@@ -48,7 +49,7 @@ export class PedaisResolver {
     })
     const error = await validate(enrollmentDto)
     if (error.length > 0) {
-      throw new HttpException(error, HttpStatus.BAD_REQUEST)
+      throw new ValidationException(error)
     }
     return this.pedaisService.createEnrollment(enrollmentDto)
   }

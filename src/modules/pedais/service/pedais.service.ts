@@ -1,9 +1,13 @@
-import { Injectable } from '@nestjs/common'
-import dayjs from 'dayjs'
 import { CreateEnrollmentDto } from '@dtos/enrollment.dto'
 import { CreatePedalDto } from '@dtos/pedal.dto'
+import { Injectable } from '@nestjs/common'
 import { EnrollmentRepository } from '@repositories/enrollment.repository'
 import { PedaisRepository } from '@repositories/pedais.repository'
+import dayjs from 'dayjs'
+import {
+  PedalNotFoundException,
+  RegistrationPeriodExpiredException,
+} from '@exception/pedais.exception'
 
 @Injectable()
 export class PedaisService {
@@ -27,14 +31,14 @@ export class PedaisService {
   async createEnrollment(data: CreateEnrollmentDto) {
     const pedalExists = await this.pedaisRepository.findById(data.pedalId)
     if (!pedalExists) {
-      throw new Error('Pedal not found')
+      throw new PedalNotFoundException()
     }
     if (
       dayjs(data.subscriptionDate).isAfter(
         dayjs(pedalExists.endDateRegistration)
       )
     ) {
-      throw new Error('Registration period has expired')
+      throw new RegistrationPeriodExpiredException()
     }
     return await this.enrollmentRepository.create(data)
   }

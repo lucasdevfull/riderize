@@ -13,6 +13,6 @@ export default {
   coverageDirectory: '../coverage',
   moduleFileExtensions: ['js', 'json', 'ts'],
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<rootDir>/'
+    prefix: '<rootDir>/',
   }),
 } satisfies JestConfigWithTsJest

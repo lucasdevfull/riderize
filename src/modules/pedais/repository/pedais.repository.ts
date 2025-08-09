@@ -1,6 +1,6 @@
+import { CreatePedalDto } from '@dtos/pedal.dto'
 import { Injectable } from '@nestjs/common'
 import type { Pedal } from '@prisma/client'
-import { CreatePedalDto } from '@dtos/pedal.dto'
 import { PrismaService } from '@/infra/prisma/prisma.service'
 import type { IPedalRepository } from '@/types/interfaces/pedal.types'
 

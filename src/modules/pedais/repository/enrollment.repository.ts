@@ -1,6 +1,6 @@
+import type { CreateEnrollmentDto } from '@dtos/enrollment.dto'
 import { Injectable } from '@nestjs/common'
 import type { Enrollment } from '@prisma/client'
-import type { CreateEnrollmentDto } from '@dtos/enrollment.dto'
 import { PrismaService } from '@/infra/prisma/prisma.service'
 import { EnrollmentPedal } from '@/types/enrollment.types'
 import type { IEnrollmentRepository } from '@/types/interfaces/enrollment.types'

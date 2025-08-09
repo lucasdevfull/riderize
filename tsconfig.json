@@ -32,23 +32,20 @@
         "src/modules/users/repository/*",
         "src/modules/pedais/repository/*"
       ],
-      "@dtos/*": [
-        "src/dto/*"
-      ],
-      "@models/*": [
-        "src/models/*"
-      ],
-      "@guards/*": [
-        "src/modules/auth/guard/*"
-      ],
+      "@dtos/*": ["src/dto/*"],
+      "@models/*": ["src/models/*"],
+      "@guards/*": ["src/modules/auth/guard/*"],
       "@resolvers/*": [
         "src/modules/auth/resolver/*",
         "src/modules/users/resolver/*",
         "src/modules/pedais/resolver/*"
       ],
       "@exception/*": [
-        "src/modules/users/exception/*"
-      ]
+        "src/modules/users/exception/*",
+        "src/modules/auth/exception/*",
+        "src/modules/pedais/exception/*"
+      ],
+      "@common/*": ["src/common/*"]
     }
   }
 }

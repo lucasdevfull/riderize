@@ -1,10 +1,10 @@
 import { randomInt } from 'node:crypto'
+import { CreateUserDto } from '@dtos/user.dto'
 import { Injectable } from '@nestjs/common'
 import { User } from '@prisma/client'
-import { CreateUserDto } from '@dtos/user.dto'
-import { PasswordService } from '@services/password/password.service'
-import { UserAlreadyExistsException } from '../exception/user.exception'
 import { UserRepository } from '@repositories/user.repository'
+import { PasswordService } from '@services/password/password.service'
+import { UserAlreadyExistsException } from '@exception/user.exception'
 
 @Injectable()
 export class UsersService {

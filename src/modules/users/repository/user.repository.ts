@@ -1,6 +1,6 @@
+import { CreateUserDto } from '@dtos/user.dto'
 import { Injectable } from '@nestjs/common'
 import { User } from '@prisma/client'
-import { CreateUserDto } from '@dtos/user.dto'
 import { PrismaService } from '@/infra/prisma/prisma.service'
 import { IUserRepository } from '@/types/interfaces/user.types'
 

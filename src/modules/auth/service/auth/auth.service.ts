@@ -1,11 +1,11 @@
+import { LoginDto } from '@dtos/user.dto'
+import { UserNotFoundException } from '@exception/user.exception'
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { compareSync } from '@node-rs/bcrypt'
 import { User } from '@prisma/client'
-import { GraphQLError } from 'graphql'
-import { LoginDto } from '@dtos/user.dto'
-import { UserNotFoundException } from '@exception/user.exception'
 import { UserRepository } from '@repositories/user.repository'
+import { InvalidPasswordException } from '@exception/auth.exception'
 
 @Injectable()
 export class AuthService {
@@ -28,11 +28,7 @@ export class AuthService {
     }
 
     if (!compareSync(password, user.password)) {
-      throw new GraphQLError('Invalid password', {
-        extensions: {
-          code: 'INVALID_PASSWORD',
-        },
-      })
+      throw new InvalidPasswordException()
     }
 
     return user

@@ -1,10 +1,10 @@
+import { AuthModule } from '@modules/auth/modules/auth.module'
+import { PedaisModule } from '@modules/pedais/pedais.module'
+import { UsersModule } from '@modules/users/users.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { GraphqlModule } from '@/infra/graphql/graphql.module'
 import { PrismaModule } from '@/infra/prisma/prisma.module'
-import { AuthModule } from '@modules/auth/modules/auth.module'
-import { PedaisModule } from '@modules/pedais/pedais.module'
-import { UsersModule } from '@modules/users/users.module'
 
 @Module({
   imports: [

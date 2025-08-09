@@ -1,11 +1,11 @@
+import { AuthGuard } from '@guards/auth.guard'
+import { UsersModule } from '@modules/users/users.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
-import { Env } from '@/types/interfaces/env.types'
-import { UsersModule } from '@modules/users/users.module'
-import { AuthGuard } from '@guards/auth.guard'
 import { AuthResolver } from '@resolvers/auth.resolver'
 import { AuthService } from '@services/auth/auth.service'
+import { Env } from '@/types/interfaces/env.types'
 
 @Module({
   imports: [
