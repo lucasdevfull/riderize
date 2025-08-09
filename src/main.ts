@@ -1,7 +1,7 @@
 import { ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
-import { NestExpressApplication } from '@nestjs/platform-express'
+import type { NestExpressApplication } from '@nestjs/platform-express'
 
 declare const module: any
 
