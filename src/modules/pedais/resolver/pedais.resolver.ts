@@ -1,3 +1,4 @@
+import { ValidationException } from '@common/exception'
 import { CreateEnrollmentDto } from '@dtos/enrollment.dto'
 import { CreatePedalDto } from '@dtos/pedal.dto'
 import { AuthGuard } from '@guards/auth.guard'
@@ -10,7 +11,6 @@ import { plainToInstance } from 'class-transformer'
 import { validate } from 'class-validator'
 import dayjs from 'dayjs'
 import type { Request } from 'express'
-import { ValidationException } from '@common/exception'
 import { CreateEnrollment } from '@/types/enrollment.types'
 
 @Resolver()

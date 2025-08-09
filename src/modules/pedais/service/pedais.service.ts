@@ -1,13 +1,13 @@
 import { CreateEnrollmentDto } from '@dtos/enrollment.dto'
 import { CreatePedalDto } from '@dtos/pedal.dto'
-import { Injectable } from '@nestjs/common'
-import { EnrollmentRepository } from '@repositories/enrollment.repository'
-import { PedaisRepository } from '@repositories/pedais.repository'
-import dayjs from 'dayjs'
 import {
   PedalNotFoundException,
   RegistrationPeriodExpiredException,
 } from '@exception/pedais.exception'
+import { Injectable } from '@nestjs/common'
+import { EnrollmentRepository } from '@repositories/enrollment.repository'
+import { PedaisRepository } from '@repositories/pedais.repository'
+import dayjs from 'dayjs'
 
 @Injectable()
 export class PedaisService {

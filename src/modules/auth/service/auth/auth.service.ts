@@ -1,11 +1,11 @@
 import { LoginDto } from '@dtos/user.dto'
+import { InvalidPasswordException } from '@exception/auth.exception'
 import { UserNotFoundException } from '@exception/user.exception'
 import { Injectable } from '@nestjs/common'
 import { JwtService } from '@nestjs/jwt'
 import { compareSync } from '@node-rs/bcrypt'
 import { User } from '@prisma/client'
 import { UserRepository } from '@repositories/user.repository'
-import { InvalidPasswordException } from '@exception/auth.exception'
 
 @Injectable()
 export class AuthService {
