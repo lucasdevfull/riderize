@@ -13,17 +13,19 @@ import dayjs from 'dayjs'
 import type { Request } from 'express'
 import { CreateEnrollment } from '@/types/enrollment.types'
 
+
 @Resolver()
+@UseGuards(AuthGuard)
 export class PedaisResolver {
   constructor(private pedaisService: PedaisService) {}
 
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   @Query(() => [Pedais], { name: 'getAllPedais' })
   async getAllPedais() {
     return this.pedaisService.getAllPedais()
   }
 
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   @Mutation(() => Pedais, { name: 'createPedais' })
   async createPedais(
     @Context('req') { user }: Request,
@@ -33,7 +35,7 @@ export class PedaisResolver {
     return result
   }
 
-  @UseGuards(AuthGuard)
+  //@UseGuards(AuthGuard)
   @Mutation(() => Enrollment, { name: 'inscribePedal' })
   async enrollment(
     @Context('req') { user }: Request,
