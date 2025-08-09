@@ -13,8 +13,8 @@ export class AuthGuard implements CanActivate {
   ) {}
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const ctx = GqlExecutionContext.create(context)
-    const request = ctx.getContext<{ req: Request }>().req
-    const token = request.headers.authorization?.split(' ')[1]
+    const { req } = ctx.getContext<{ req: Request }>()
+    const token = this.getToken(req)
     if (!token) throw new UnauthorizedException()
 
     const { sub } = this.jwtService.verify<{
@@ -29,7 +29,11 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException()
     }
 
-    request.user = user.userId
+    req.user = user.userId
     return true
+  }
+
+  getToken({ headers: { authorization } }: Request): string | undefined {
+    return authorization?.split(' ')[1]
   }
 }
