@@ -4,18 +4,22 @@ import { AppModule } from './app.module'
 import type { NestExpressApplication } from '@nestjs/platform-express'
 import { ConfigService } from '@nestjs/config'
 import type { Env } from './types/env.types'
+import { Logger } from 'nestjs-pino'
 
 declare const module: any
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    bufferLogs: true,
+  })
   app.useGlobalPipes(new ValidationPipe())
+  app.useLogger(app.get(Logger))
   const configService = app.get<ConfigService<Env>>(ConfigService)
   if (module.hot) {
     module.hot.accept()
     module.hot.dispose(() => app.close())
   }
 
-  await app.listen(Number(configService.get<string>('PORT')) ?? 3000)
+  await app.listen(configService.get<number>('PORT') ?? 3000)
 }
 bootstrap()

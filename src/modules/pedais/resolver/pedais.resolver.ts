@@ -51,7 +51,6 @@ export class PedaisResolver {
         message: error,
         error: 'Bad Request',
       })
-      //throw new ValidationException(error)
     }
     return this.pedaisService.createEnrollment(enrollmentDto)
   }

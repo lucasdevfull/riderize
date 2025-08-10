@@ -6,5 +6,6 @@ onlyBuiltDependencies:
   - '@prisma/engines'
   - '@swc/core'
   - esbuild
+  - nestjs-pino
   - prisma
   - unrs-resolver
