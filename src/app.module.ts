@@ -2,13 +2,12 @@ import { AuthModule } from '@modules/auth/modules/auth.module'
 import { PedaisModule } from '@modules/pedais/pedais.module'
 import { UsersModule } from '@modules/users/users.module'
 import { Module } from '@nestjs/common'
-import { ConfigModule, ConfigService } from '@nestjs/config'
-import { GraphqlModule } from '@/infra/graphql/graphql.module'
-import { PrismaModule } from '@/infra/prisma/prisma.module'
+import { ConfigModule } from '@nestjs/config'
+import { GraphqlModule } from '@infra/graphql/graphql.module'
+import { PrismaModule } from '@infra/prisma/prisma.module'
 import { EnvDto } from './env'
 import { LoggerModule } from 'nestjs-pino'
-import { CacheModule } from '@nestjs/cache-manager'
-import { createKeyv } from '@keyv/redis'
+import { RedisModule } from '@infra/redis/redis.module'
 
 @Module({
   imports: [
@@ -17,6 +16,7 @@ import { createKeyv } from '@keyv/redis'
     PrismaModule,
     AuthModule,
     GraphqlModule,
+    RedisModule,
     LoggerModule.forRoot({
       pinoHttp: {
         level: 'info',
@@ -37,14 +37,6 @@ import { createKeyv } from '@keyv/redis'
       isGlobal: true,
       validate: EnvDto.validate,
     }),
-    // CacheModule.registerAsync({
-    //   inject: [ConfigService],
-    //   useFactory: async (configService: ConfigService) => ({
-    //     isGlobal: true,
-    //     store: createKeyv(configService.get<string>('REDIS_URL')),
-    //     ttl: 60,
-    //   }),
-    // }),
   ],
 })
 export class AppModule {}

@@ -4,7 +4,8 @@ import {
   PedalNotFoundException,
   RegistrationPeriodExpiredException,
 } from '@exception/pedais.exception'
-import { Injectable } from '@nestjs/common'
+import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager'
+import { Inject, Injectable } from '@nestjs/common'
 import { EnrollmentRepository } from '@repositories/enrollment.repository'
 import { PedaisRepository } from '@repositories/pedais.repository'
 import dayjs from 'dayjs'
@@ -12,16 +13,28 @@ import dayjs from 'dayjs'
 @Injectable()
 export class PedaisService {
   constructor(
+    @Inject(CACHE_MANAGER)
+    private readonly cache: Cache,
     private pedaisRepository: PedaisRepository,
     private enrollmentRepository: EnrollmentRepository
   ) {}
 
   async getAllPedais() {
-    return await this.pedaisRepository.findAll()
+    const cached = await this.cache.get('pedais')
+    if (cached) return cached
+
+    const pedais = await this.pedaisRepository.findAll()
+    await this.cache.set('pedais', pedais)
+    return pedais
   }
 
   async getPedalByUserId(userId: string) {
-    return await this.pedaisRepository.findByUserId(userId)
+    const cached = await this.cache.get(`pedais-${userId}`)
+    if (cached) return cached
+
+    const pedal = await this.pedaisRepository.findByUserId(userId)
+    await this.cache.set(`pedais-${userId}`, pedal)
+    return pedal
   }
 
   async createPedal(data: CreatePedalDto, userId: string) {

@@ -45,7 +45,8 @@
         "src/modules/auth/exception/*",
         "src/modules/pedais/exception/*"
       ],
-      "@common/*": ["src/common/*"]
+      "@common/*": ["src/common/*"],
+      "@infra/*": ["src/infra/*"]
     },
     "allowJs": true
   }
