@@ -40,6 +40,6 @@ import { AppController } from './app.controller'
       validate: EnvDto.validate,
     }),
   ],
-  controllers: [AppController]
+  controllers: [AppController],
 })
 export class AppModule {}
