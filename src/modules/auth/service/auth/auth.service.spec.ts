@@ -2,9 +2,8 @@ import { UsersModule } from '@modules/users/users.module'
 import { JwtModule } from '@nestjs/jwt'
 import { Test, TestingModule } from '@nestjs/testing'
 import { UserRepository } from '@repositories/user.repository'
-import { AuthService } from './auth.service'
-import { PrismaService } from '@/infra/prisma/prisma.service'
 import { PrismaModule } from '@/infra/prisma/prisma.module'
+import { AuthService } from './auth.service'
 
 describe('AuthService', () => {
   let service: AuthService

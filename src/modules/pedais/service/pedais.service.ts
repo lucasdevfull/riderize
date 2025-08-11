@@ -4,7 +4,7 @@ import {
   PedalNotFoundException,
   RegistrationPeriodExpiredException,
 } from '@exception/pedais.exception'
-import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager'
+import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager'
 import { Inject, Injectable } from '@nestjs/common'
 import { EnrollmentRepository } from '@repositories/enrollment.repository'
 import { PedaisRepository } from '@repositories/pedais.repository'

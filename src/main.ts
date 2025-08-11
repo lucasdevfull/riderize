@@ -1,10 +1,10 @@
 import { ValidationPipe } from '@nestjs/common'
-import { NestFactory } from '@nestjs/core'
-import { AppModule } from './app.module'
-import type { NestExpressApplication } from '@nestjs/platform-express'
 import { ConfigService } from '@nestjs/config'
-import type { Env } from './types/env.types'
+import { NestFactory } from '@nestjs/core'
+import type { NestExpressApplication } from '@nestjs/platform-express'
 import { Logger } from 'nestjs-pino'
+import { AppModule } from './app.module'
+import type { Env } from './types/env.types'
 
 declare const module: any
 

@@ -1,7 +1,7 @@
-import { Env } from '@/types/env.types'
 import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
+import { Env } from '@/types/env.types'
 
 @Module({
   imports: [

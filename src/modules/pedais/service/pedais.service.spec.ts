@@ -1,9 +1,9 @@
-import { RedisModule } from '@/infra/redis/redis.module'
-import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager'
+import { CACHE_MANAGER, Cache } from '@nestjs/cache-manager'
 import { Test, TestingModule } from '@nestjs/testing'
 import { EnrollmentRepository } from '@repositories/enrollment.repository'
 import { PedaisRepository } from '@repositories/pedais.repository'
 import { PedaisService } from '@services/pedais.service'
+import { RedisModule } from '@/infra/redis/redis.module'
 
 describe('PedaisService', () => {
   let service: PedaisService

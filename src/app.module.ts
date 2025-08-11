@@ -1,15 +1,15 @@
+import { GraphqlModule } from '@infra/graphql/graphql.module'
+import { PrismaModule } from '@infra/prisma/prisma.module'
+import { RedisModule } from '@infra/redis/redis.module'
 import { AuthModule } from '@modules/auth/modules/auth.module'
 import { PedaisModule } from '@modules/pedais/pedais.module'
 import { UsersModule } from '@modules/users/users.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { GraphqlModule } from '@infra/graphql/graphql.module'
-import { PrismaModule } from '@infra/prisma/prisma.module'
-import { EnvDto } from './env'
 import { LoggerModule } from 'nestjs-pino'
-import { RedisModule } from '@infra/redis/redis.module'
-import { nodeEnv } from './constants'
 import { AppController } from './app.controller'
+import { nodeEnv } from './constants'
+import { EnvDto } from './env'
 
 @Module({
   imports: [

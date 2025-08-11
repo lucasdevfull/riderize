@@ -1,7 +1,7 @@
 import { createKeyv } from '@keyv/redis'
+import { CACHE_MANAGER, Cache, CacheModule } from '@nestjs/cache-manager'
 import { Global, Inject, Module, OnModuleInit } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { Cache, CACHE_MANAGER, CacheModule } from '@nestjs/cache-manager'
 
 @Global()
 @Module({
