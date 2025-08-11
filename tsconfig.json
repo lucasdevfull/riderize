@@ -46,7 +46,8 @@
         "src/modules/pedais/exception/*"
       ],
       "@common/*": ["src/common/*"],
-      "@infra/*": ["src/infra/*"]
+      "@infra/*": ["src/infra/*"],
+      "@orm/*": [".prisma/*"]
     },
     "allowJs": true
   }

@@ -1,3 +1,5 @@
+import { RedisModule } from '@/infra/redis/redis.module'
+import { Cache, CACHE_MANAGER } from '@nestjs/cache-manager'
 import { Test, TestingModule } from '@nestjs/testing'
 import { EnrollmentRepository } from '@repositories/enrollment.repository'
 import { PedaisRepository } from '@repositories/pedais.repository'
@@ -25,6 +27,10 @@ describe('PedaisService', () => {
             findAllByUserID: jest.fn(),
             create: jest.fn(),
           },
+        },
+        {
+          provide: CACHE_MANAGER,
+          useValue: Cache,
         },
       ],
     }).compile()

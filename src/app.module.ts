@@ -8,6 +8,8 @@ import { PrismaModule } from '@infra/prisma/prisma.module'
 import { EnvDto } from './env'
 import { LoggerModule } from 'nestjs-pino'
 import { RedisModule } from '@infra/redis/redis.module'
+import { nodeEnv } from './constants'
+import { AppController } from './app.controller'
 
 @Module({
   imports: [
@@ -21,7 +23,7 @@ import { RedisModule } from '@infra/redis/redis.module'
       pinoHttp: {
         level: 'info',
         transport:
-          process.env.NODE_ENV === 'production'
+          process.env.NODE_ENV === nodeEnv.PRODUCTION
             ? undefined
             : {
                 target: 'pino-pretty',
@@ -38,5 +40,6 @@ import { RedisModule } from '@infra/redis/redis.module'
       validate: EnvDto.validate,
     }),
   ],
+  controllers: [AppController]
 })
 export class AppModule {}

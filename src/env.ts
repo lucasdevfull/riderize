@@ -1,9 +1,12 @@
 import { instanceToPlain, plainToInstance, Type } from 'class-transformer'
-import { IsNumber, IsString, validateSync } from 'class-validator'
+import { IsEnum, IsNumber, IsString, validateSync } from 'class-validator'
+import { nodeEnv } from './constants'
+
+type NODE_ENV = keyof typeof nodeEnv
 
 export class EnvDto {
-  @IsString()
-  NODE_ENV: string
+  @IsEnum(nodeEnv)
+  NODE_ENV: NODE_ENV
 
   @IsString()
   DATABASE_URL: string
