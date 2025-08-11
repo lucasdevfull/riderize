@@ -6,6 +6,7 @@ export default {
   testEnvironment: 'node',
   rootDir: '../',
   testRegex: ".e2e-spec.ts$",
+  //globalSetup: '<rootDir>/test/setup.ts',
   transform: {
     '^.+\\.(t|j)s$': 'ts-jest',
   },
